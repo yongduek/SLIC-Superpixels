@@ -13,8 +13,7 @@
  * over-segmentations in an OpenCV-based environment.
  */
 
-#include <opencv/cv.h>
-#include <opencv/highgui.h>
+#include <opencv2/opencv.hpp>
 #include <stdio.h>
 #include <math.h>
 #include <vector>
@@ -69,10 +68,35 @@ class Slic {
         /* Enforce connectivity for an image. */
         void create_connectivity(IplImage *image);
         
-        /* Draw functions. Resp. displayal of the centers and the contours. */
+        /* Draw functions. Resp. display of the centers and the contours. */
         void display_center_grid(IplImage *image, CvScalar colour);
         void display_contours(IplImage *image, CvScalar colour);
         void colour_with_cluster_means(IplImage *image);
+
+
+    inline void generate_superpixels(cv::Mat& image, int step, int nc) {
+        IplImage ipl = image;
+        generate_superpixels(&ipl, step, nc);
+    }
+    /* Enforce connectivity for an image. */
+    inline void create_connectivity(cv::Mat& image) {
+        IplImage ipl = image;
+        create_connectivity(&ipl);
+    }
+    
+    /* Draw functions. Resp. displayal of the centers and the contours. */
+    inline void display_center_grid(cv::Mat& image, CvScalar colour) {
+        IplImage ipl = image;
+        display_center_grid(&ipl, colour);
+    }
+    inline void display_contours(cv::Mat& image, CvScalar colour) {
+        IplImage ipl = image;
+        display_contours(&ipl, colour);
+    }
+    inline void colour_with_cluster_means(cv::Mat& image) {
+        IplImage ipl = image;
+        colour_with_cluster_means(&ipl);
+    }
 };
 
 #endif

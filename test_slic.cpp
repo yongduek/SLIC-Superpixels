@@ -6,7 +6,8 @@
  * This file creates an over-segmentation of a provided image based on the SLIC
  * superpixel algorithm, as implemented in slic.h and slic.cpp.
  */
- 
+#ifdef MAIN_
+
 #include <opencv/cv.h>
 #include <opencv/highgui.h>
 #include <stdio.h>
@@ -41,3 +42,5 @@ int main(int argc, char *argv[]) {
     cvWaitKey(0);
     cvSaveImage(argv[4], image);
 }
+
+#endif
